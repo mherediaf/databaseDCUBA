@@ -1,0 +1,47 @@
+El gobierno de una nación se acerca a nosotros con el objetivo de crear un sistema de voto electrónico para futuras elecciones.
+
+\subsection{Alcance}
+El alcance del sistema será todo tipo de votación nacional, provincial y municipal,
+ya sea para la elección de cargos públicos como la realización de consultas populares a la ciudadanía.
+
+En esta primera etapa, en el caso de las elecciones de cargos públicos, sólo tendremos en cuenta un cargo por elección.
+
+Cada votación abarcará ciertos municipios o provincias, pero no ambos a la vez. Esto significa que si una votación es
+a nivel provincial, abarcará las provincias correspondientes, pero no se establerecerá una relación directa con los
+municipios que integran cada provincia; si una votación abarca una provincia, automáticamente abarcará todos los municipios.
+
+En cuanto a los tipos de votación, en principio estableceremos unos tipos básicos, permitiendo a futuro nuevos
+tipos creados por el administrador del sistema.
+
+\subsection{Padrón electoral}
+El sistema aquí introducido incluirá la gestión de un padrón electoral, 
+que para cada ciudadano indicará la mesa y el centro de votación donde debe votar. Se proveerá una interfaz de alta
+y modificación del padrón, que permitirá ingresar nuevos ciudadanos al mismo, como también determinar una fecha de
+defunción cuando corresponda. Los datos de los nuevos ciudadanos deberán ser provistos junto con el centro de votación 
+y el número de mesa donde voten.
+
+El padrón NO podrá ser modificado durante una votación. Esto se debe a que mientras haya una votación en curso,
+el sistema realizará validaciones en cuanto a que cada persona vote donde el padrón lo indique.
+
+\subsection{Datos históricos de las votaciones}
+Se almacenará la historia de todas las votaciones realizadas mediante este sistema, considerando fecha de inicio y fin de las mismas,
+así como también el alcance y el tipo. Si se tratare de una elección de un cargo público, se preservarán los datos de los candidatos 
+(incluyendo el partido político) y los votos recibidos por cada uno en total y en cada mesa. En el caso de las consultas populares se
+mantendrán los datos de las distintas opciones y los votos en total y por cada mesa.
+
+Además por cada mesa almacenaremos quiénes fueron las autoridades: presidente, vicepresidente y fiscales.
+De todos ellos guardaremos los datos personales y en el caso de los fiscales, el partido político que representaban.
+
+Por último guardaremos la lista de ciudadanos que votó efectivamente en cada mesa en cada votación. Dado que sabemos la 
+fecha en que un ciudadano ingresó al padrón y conocemos también las fechas de inicio de las votaciones, podemos determinar si
+efectivamente a un ciudadano le correspondía o no votar y si fue o no a votar cuando le correspondía.
+
+Una observación no menor sobre lo antedicho es que no guardamos a quién/qué votó cada ciudadano, sólo registramos el acto de votación.
+Esto permite preservar la confidencialidad del voto. La cantidad de votos por candidato o por opción electoral, se conocen por cada
+mesa (no por cada votante).
+
+\subsection{Otros datos tenidos en cuenta}
+Por cada mesa almacenamos los datos del técnico asignado a la máquina.
+
+Por cada centro de votación almacenamos los datos de las camionetas asignadas al centro,
+que reemplazarán máquinas en caso de que se rompan, así como los datos del conductor asignado a cada una de ellas.

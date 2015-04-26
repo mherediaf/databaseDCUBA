@@ -1,0 +1,27 @@
+Para realizar este trabajo, asumimos:
+\begin{itemize}
+ \item La gestión del padrón de ciudadanos es correcta, en el sentido que se respetan las leyes de creación
+ del padrón según corresponda (en cuanto a distancia al lugar de votación, distribución por apellido, etc.).
+ Dado que estos datos son ingresados por un agente externo, el sistema se limita a confiar en esta información, 
+ y de hecho se basa en ella para realizar otras validaciones.
+ 
+ \item Cualquier  abarca o bien todas las provincias, o bien un subconjunto de provincias, o bien un subconjunto
+ de municipios de una misma provincia. No tuvimos en cuenta mayor granularidad.
+ 
+ \item El alcance de la historia que almacena nuestro sistema, mencionada en la sección inicial, fue determinado
+ luego de un proceso iterativo de elicitación, y aceptado por el cliente.
+ 
+ \item Las entidades OpcionElectoral y CandidatoElectoral se consideraron entidades débiles debido a que cada
+ votación tendrá sus opciones y sus candidatos, y no tiene sentido hablar de opciones o candidatos cuando no
+ existe una elección que los contemple.
+ 
+ \item La entidad MesaElectoral representa la mesa física perteneciente a un centro de votación. A pesar de
+ ser parte de este centro, el número de mesa es único en todo el sistema dado que actualmente las mesas de
+ cualquier votación tienen un identificador independiente del centro.
+\end{itemize}
+
+
+
+
+
+
