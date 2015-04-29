@@ -1,0 +1,39 @@
+%Clase1 Clase2 Atributo Ida Vuelta
+\begin{restriccionesMR}
+ \restriccion{Ciudadano}{EsCandidato}{DNI}{p}{d}
+ \restriccion{CandidatoElectoral}{EsCandidato}{Número}{d}{d}
+ \restriccion{VotoEn}{Ciudadano}{DNI}{d}{p}
+ \restriccion{VotoEn}{Votación}{idVotación}{d}{p}
+ \restriccion{VotoEn}{MesaElectoral}{NúmeroMesa}{d}{p}
+ \restriccion{MesaElectoral}{Ciudadano}{DNI}{d}{p}
+ \restriccion{Ciudadano}{MesaElectoral}{NúmeroMesa}{d}{d}
+ \restriccion{Ciudadano}{AutoridadDeMesa}{DNI}{p}{d}
+ \restriccion{Ciudadano}{Camioneta}{DNI}{p}{d}
+ \restriccion{MesaElectoral}{EsVotado}{NúmeroMesa}{p}{d}
+ \restriccion{CandidatoElectoral}{EsVotado}{Número}{p}{d}
+ \restriccion{MesaElectoral}{CentroDeVotación}{idCentro}{d}{d}
+ \restriccion{MesaElectoral}{EsVotada}{NúmeroMesa}{p}{d}
+ \restriccion{OpciónElectoral}{EsVotada}{Número}{p}{d}
+ \restriccion{AutoridadDeMesa}{MesaElectoral}{NúmeroMesa}{d}{d}
+ \restriccion{Votación}{TipoVotación}{idTipoVotación}{d}{d}
+ \item{EleciónCargoPolítico.idVotación debe estar en Votación.idVotación}
+ \item{ConsultaPopular.idVotación debe estar en Votación.idVotación}
+ \item{Votación.idVotación puede estar en EleciónCargoPolítico.idVotación o (exclusivo) ConsultaPopular.idVotación o (exclusivo) no estar en ninguno de los dos anteriores}
+ \restriccion{ConsultaPopular}{OpciónElectoral}{idVotación}{d}{d}
+ \restriccion{EleciónCargoPolítico}{CandidatoElectoral}{idVotación}{d}{d}
+ \restriccion{AutoridadDeMesa}{Votación}{idVotación}{d}{d}
+ \restriccion{Votación}{ProvinciaQueAbarca}{idVotación}{p}{d}
+ \restriccion{Provincia}{ProvinciaQueAbarca}{idProvincia}{p}{d}
+ \restriccion{Votación}{MunicipioQueAbarca}{idVotación}{p}{d}
+ \restriccion{Municipio}{MunicipioQueAbarca}{idProvincia}{p}{d}
+ \restriccion{CandidatoElectoral}{PartidoPolítico}{idPartido}{d}{p}
+ \restriccion{FiscalDeMesa}{PartidoPolítico}{idPartido}{d}{p}
+ \item{FiscalDeMesa.idAutoridad debe estar en AutoridadDeMesa.idAutoridad}
+ \item{PresidenteDeMesa.idAutoridad debe estar en AutoridadDeMesa.idAutoridad}
+ \item{VicePresidenteDeMesa.idAutoridad debe estar en AutoridadDeMesa.idAutoridad}
+ \item{AutoridadDeMesa.idAutoridad puede estar en FiscalDeMesa.idAutoridad o (exclusivo) PresidenteDeMesa.idAutoridad o (exclusivo) VicePresidenteDeMesa.idAutoridad o (exclusivo) no estar en ninguno de los dos anteriores}
+ \restriccion{CentroDeVotación}{Municipio}{idMunicipio}{d}{d}
+ \restriccion{CentroDeVotación}{TieneAsignada}{idCentro}{d}{d}
+ \restriccion{Camioneta}{TieneAsignada}{idCamioneta}{d}{d}
+ \restriccion{Municipio}{Provincia}{idProvincia}{d}{d}
+\end{restriccionesMR}
