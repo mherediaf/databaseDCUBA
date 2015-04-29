@@ -88,14 +88,29 @@
 
 
 %%%%%%%%%% Comandos para Modelo Relacional - Inicio %%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\relacion}[2]{
-  {\bf #1(}#2{\bf )}
+
+%% Nombre PK CK FK PKCK PKCKFK atributos
+\newcommand{\relacion}[7]{
+  {\bf #1(} #7 {\bf )}\\
+    \ifthenelse{\equal{#5}{}}{}{PK = CK = \{#5\}\\}
+    \ifthenelse{\equal{#6}{}}{}{PK = CK = FK = \{#6\}\\}
+    \ifthenelse{\equal{#2}{}}{}{PK = \{#2\}\\}
+    \ifthenelse{\equal{#3}{}}{}{CK = \{#3\}\\}
+    \ifthenelse{\equal{#4}{}}{}{FK = \{#4\}\\}\\
 }
+
+
 \newcommand{\PK}[1]{\underline{#1}}
+\newcommand{\PKCK}[1]{\underline{#1}}
 \newcommand{\FK}[1]{\dashuline{#1}}
-\newcommand{\PKFK}[1]{\PK{\FK{#1}}}
+\newcommand{\PKCKFK}[1]{\PK{\FK{#1}}}
+
+
 \newenvironment{restriccionesMR}{\begin{itemize}}{\end{itemize}}
-\newcommand{\restriccion}[1]{\item[] #1}
+%Clase1 Clase2 Atributo Ida Vuelta
+\newcommand{\restriccion}[5]{
+   \item{ \ifthenelse{\equal{#4}{d}}{ $#1.#3$ debe estar en $#2.#3$}{$#1.#3$ puede no estar en $#2.#3$}}\item{ \ifthenelse{\equal{#5}{d}}{$#2.#3$ debe estar en $#1.#3$}{$#2.#3$ puede no estar en $#1.#3$}}
+    }
 %%%%%%%%%% Comandos para Modelo Relacional - Fin %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -199,7 +214,7 @@ Vita, Sebastián  & 149/11 & {\tt sebastian\_vita@yahoo.com.ar}\\
 \newpage
 
 \subsection{Restricciones}
-%\input{restriccionesDER.tex}
+\input{restriccionesDER.tex}
 
 \newpage
 
@@ -210,6 +225,11 @@ Vita, Sebastián  & 149/11 & {\tt sebastian\_vita@yahoo.com.ar}\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Modelo Relacional}
 \input{modeloRelacional.tex}
+
+\newpage
+
+\subsection{Restricciones}
+\input{restriccionesMR.tex}
 
 \newpage
 

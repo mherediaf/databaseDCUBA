@@ -1,20 +1,26 @@
-
-\relacion{Camioneta}{\PK{idCamioneta}, patente, \FK{dniResponsable}}
-\begin{restriccionesMR}
- \restriccion{Camioneta.dniResponsable debe estar en Ciudadano.DNI}
-\end{restriccionesMR}
-
-
-
-\relacion{CentroDeVotacion}{\PK{idCentro}, nombre, direccion, \FK{idMunicipio}}
-\begin{restriccionesMR}
- \restriccion{CentroDeVotacion.idMunicipio debe estar en Municipio.idMunicipio}
-\end{restriccionesMR}
-
-
-
-\relacion{CamionetaAsignadaACentroDeVotacion}{\PKFK{idCamioneta, idCentro}}
-\begin{restriccionesMR}
- \restriccion{CamionetaAsignadaACentroDeVotacion.idCamioneta debe estar en Camioneta.idCamioneta}
- \restriccion{CamionetaAsignadaACentroDeVotacion.idCentro debe estar en CentroDeVotacion.idCentro}
-\end{restriccionesMR}
+%% Nombre PK CK FK PKCK PKCKFK otrasClaves
+\relacion{Ciudadano}{}{}{NúmeroMesa}{DNI}{}{\PKCK{DNI}, Nombre, Apellido, FechaNacimiento, FechaIngresoPadron, FechaDefunción, \FK{NúmeroMesa}}
+\relacion{CandidatoElectoral}{}{}{idPartido}{(Número, idVotación)}{}{\PKCK{Número, idVotación}, \FK{idPartido}, CantVotos}
+\relacion{EsCandidato}{}{}{DNI, Número}{(DNI, Número)}{}{\PKCKFK{DNI}, \PKCKFK{Número}}
+\relacion{MesaElectoral}{}{}{DNI, idCentro}{NúmeroMesa}{}{\PKCK{NúmeroMesa}, \FK{DNI, idCentro}}
+\relacion{Votación}{}{}{idTipoVotación}{idVotación}{}{\PKCK{idVotación}, \FK{idTipoVotación}, Fechainicio, FechaFin}
+\relacion{VotoEn}{}{}{DNI, idVotación, NúmeroMesa}{(DNI, idVotación)}{}{\PKCKFK{DNI}, \PKCKFK{idVotación}, \FK{NúmeroMesa}, fecha}
+\relacion{AutoridadDeMesa}{}{}{DNI}{idAutoridad}{}{\PKCK{idAutoridad}, \FK{DNI}}
+\relacion{Camioneta}{idCamioneta}{idCamioneta, Patente}{DNI}{}{}{\PK{idCamioneta}, \FK{DNI}, Patente}
+\relacion{EsVotado}{}{}{NúmeroMesa, Número}{(NúmeroMesa, Número)}{}{\PKCKFK{NúmeroMesa, Número}, CantVotos}
+\relacion{CentroDeVotación}{}{}{idMunicipio}{idCentro}{}{\PKCK{idCentro}, Dirección, Nombre, \FK{idMunicipio}}
+\relacion{OpciónElectoral}{}{}{}{(Número, idVotación)}{}{\PKCK{Número, idVotación}, Descripción, CantVotos}
+\relacion{EsVotada}{}{}{NúmeroMesa, Número}{(NúmeroMesa, Número)}{}{\PKCKFK{NúmeroMesa, Número}, CantVotos}
+\relacion{AutoridadDeMesa}{}{}{NúmeroMesa, idVotación}{idAutoridad}{}{\PKCK{idAutoridad}, \FK{NúmeroMesa, idVotación}}
+\relacion{TipoVotación}{}{}{}{idTipoVotación}{}{\PKCK{idTipoVotación}, Nombre}
+\relacion{EleciónCargoPolítico}{}{}{}{}{idVotación}{\PKCKFK{idVotación}}
+\relacion{ConsultaPopular}{}{}{}{}{idVotación}{\PKCKFK{idVotación}}
+\relacion{Provincia}{}{}{}{idProvincia}{}{\PKCK{idProvincia}, Nombre}
+\relacion{ProvinciaQueAbarca}{}{}{(idVotación, idProvincia)}{(idVotación, idProvincia)}{}{\PKCKFK{idVotación, idProvincia}}
+\relacion{Municipio}{}{}{idProvincia}{idMunicipio}{}{\PKCK{idMunicipio}, Nombre, \FK{idProvincia}}
+\relacion{MunicipioQueAbarca}{}{}{(idVotación, idMunicipio)}{(idVotación, idMunicipio)}{}{\PKCKFK{idVotación, idMunicipio}}
+\relacion{PartidoPolítico}{}{}{}{idPartido}{}{\PKCK{idPartido}, Nombre}
+\relacion{FiscalDeMesa}{}{}{}{}{idAutoridad, idPartido}{\PKCKFK{idAutoridad, idPartido}}
+\relacion{PresidenteDeMesa}{}{}{}{}{idAutoridad}{\PKCKFK{idAutoridad}}
+\relacion{VicePresidenteDeMesa}{}{}{}{}{idAutoridad}{\PKCKFK{idAutoridad}}
+\relacion{TieneAsignada}{}{}{idCentro, idCamioneta}{(idCentro, idCamioneta)}{}{\PKCKFK{idCentro, idCamioneta}}
